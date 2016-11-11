@@ -9,18 +9,28 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.query.Query;
 
+import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         Session session = openSession();
-        session.save(Category.named("action"));
-        Query query = session.createQuery("FROM Category");
-        List<Category> categories = query.list();
-        System.out.println(Arrays.toString(categories.toArray()));
+
+        CategoriesRepository categories = new CategoriesRepository(session);
+
+        Category category = Category.named("action");
+        categories.add(category);
+        List<Category> all = categories.all();
+
+        System.out.println(MessageFormat.format(
+            "{0}: {1}",
+            category.getId(),
+            category.getName()
+        ));
+        System.out.println(Arrays.toString(all.toArray()));
+
         session.close();
     }
 
@@ -30,7 +40,10 @@ public class Main {
             .build()
         ;
 
-        SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+        SessionFactory sessionFactory = new MetadataSources(registry)
+            .buildMetadata()
+            .buildSessionFactory()
+        ;
 
         return sessionFactory.openSession();
     }
