@@ -1,8 +1,9 @@
 /**
  * This source file is subject to the license that is bundled with this package in the file LICENSE.
  */
-package com.codeup.hibernate;
+package com.codeup.console;
 
+import com.codeup.hibernate.CategoriesRepository;
 import com.codeup.movies.Category;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,7 +15,7 @@ import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main {
+public class Application {
     public static void main(String[] args) {
         Session session = openSession();
 
