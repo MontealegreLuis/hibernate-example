@@ -5,6 +5,7 @@ package com.codeup.hibernate;
 
 import com.codeup.movies.Categories;
 import com.codeup.movies.Category;
+import com.codeup.movies.Movie;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -19,6 +20,13 @@ public class CategoriesRepository implements Categories {
 
     public void add(Category category) {
         session.save(category);
+    }
+
+    public Category with(int id) {
+        Query query = session.createQuery("FROM Category WHERE id = ?");
+        query.setParameter(0, id);
+
+        return (Category) query.uniqueResult();
     }
 
     public List<Category> all() {

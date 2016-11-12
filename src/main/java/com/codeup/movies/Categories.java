@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface Categories {
     void add(Category category);
-    List all();
+    List<Category> all();
+    Category with(int id);
 }

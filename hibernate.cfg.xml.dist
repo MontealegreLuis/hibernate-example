@@ -11,7 +11,7 @@
             com.mysql.cj.jdbc.Driver
         </property>
         <property name="connection.url">
-        jdbc:mysql://localhost/movies_db?useLegacyDatetimeCode=false&amp;serverTimezone=UTC
+            jdbc:mysql://localhost/movies_db?useLegacyDatetimeCode=false&amp;serverTimezone=UTC
         </property>
         <property name="connection.driver_class">
             com.mysql.cj.jdbc.Driver
@@ -27,5 +27,6 @@
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
         <mapping resource="com/codeup/movies/Category.hbm.xml" />
+        <mapping resource="com/codeup/movies/Movie.hbm.xml" />
     </session-factory>
 </hibernate-configuration>
