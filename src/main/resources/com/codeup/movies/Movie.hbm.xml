@@ -8,13 +8,19 @@
         <meta attribute="class-description">
             This class contains the movie information.
         </meta>
-        <id name="id" type="int" column="id">
+        <id name="id" type="int" column="id" access="field">
             <generator class="native"/>
         </id>
-        <property name="title" column="title" type="string"/>
-        <property name="rating" column="rating" type="integer"/>
-        <property name="thumbnail" column="thumbnail" type="string"/>
-        <list name="categories" inverse="false" table="movies_categories" cascade="all" fetch="select">
+        <property name="title" column="title" type="string" access="field"/>
+        <property name="rating" column="rating" type="integer" access="field"/>
+        <property name="thumbnail" column="thumbnail" type="string" access="field"/>
+        <list
+            name="categories"
+            inverse="false"
+            table="movies_categories"
+            cascade="all"
+            fetch="select"
+        >
             <key column="movie_id" not-null="true" />
             <index />
             <many-to-many column="category_id" class="com.codeup.movies.Category"/>

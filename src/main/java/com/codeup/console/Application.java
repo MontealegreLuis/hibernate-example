@@ -46,8 +46,8 @@ public class Application {
 
         System.out.println(MessageFormat.format(
             "{0}: {1}",
-            category.getId(),
-            category.getName()
+            category.id(),
+            category.name()
         ));
         System.out.println(Arrays.toString(all.toArray()));
 

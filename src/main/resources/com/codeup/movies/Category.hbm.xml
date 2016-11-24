@@ -8,9 +8,9 @@
         <meta attribute="class-description">
             This class contains the movies category information.
         </meta>
-        <id name="id" type="int" column="id">
+        <id name="id" type="int" column="id" access="field">
             <generator class="native"/>
         </id>
-        <property name="name" column="name" type="string"/>
+        <property name="name" column="name" type="string" access="field"/>
     </class>
 </hibernate-mapping>

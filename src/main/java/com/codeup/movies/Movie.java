@@ -13,7 +13,7 @@ public class Movie {
     private String thumbnail;
     private List<Category> categories = new ArrayList<Category>();
 
-    public Movie() {}
+    protected Movie() {}
 
     private Movie(
         String title,
@@ -36,36 +36,20 @@ public class Movie {
         return new Movie(title, rating, thumbnail, categories);
     }
 
-    public int getId() {
+    public int id() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
+    public String title() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getRating() {
+    public int rating() {
         return rating;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public String getThumbnail() {
+    public String thumbnail() {
         return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
     }
 
     public List<Category> getCategories() {
