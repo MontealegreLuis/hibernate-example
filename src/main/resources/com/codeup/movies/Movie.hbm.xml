@@ -16,13 +16,12 @@
         <property name="thumbnail" column="thumbnail" type="string" access="field"/>
         <list
             name="categories"
-            inverse="false"
             table="movies_categories"
             cascade="all"
-            fetch="select"
+            lazy="extra"
         >
             <key column="movie_id" not-null="true" />
-            <index />
+            <list-index column="idx"/>
             <many-to-many column="category_id" class="com.codeup.movies.Category"/>
         </list>
     </class>

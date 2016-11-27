@@ -12,5 +12,10 @@
             <generator class="native"/>
         </id>
         <property name="name" column="name" type="string" access="field"/>
+        <list name="movies" table="movies_categories" lazy="extra">
+            <key column="category_id" not-null="true"/>
+            <list-index column="idx"/>
+            <many-to-many column="movie_id" class="com.codeup.movies.Movie"/>
+        </list>
     </class>
 </hibernate-mapping>

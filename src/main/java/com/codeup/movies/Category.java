@@ -4,10 +4,20 @@
 package com.codeup.movies;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Category implements Serializable {
-    private long id;
+    private int id;
     private String name;
+    private List<Movie> movies;
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
 
     protected Category() {}
 
@@ -27,8 +37,12 @@ public class Category implements Serializable {
         return name;
     }
 
+    public void addMovie(Movie movie) {
+        movies.add(movie);
+    }
+
     @Override
     public String toString() {
-        return name;
+        return String.format("%d: %s, %s", id, name, movies.size());
     }
 }

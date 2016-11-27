@@ -19,7 +19,9 @@ public class MoviesRepository implements Movies {
     }
 
     public void add(Movie movie) {
+        session.beginTransaction();
         session.save(movie);
+        session.getTransaction().commit();
     }
 
     public Movie with(int id) {

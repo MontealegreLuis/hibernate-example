@@ -4,6 +4,7 @@
 package com.codeup.movies;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Movie {
@@ -52,11 +53,23 @@ public class Movie {
         return thumbnail;
     }
 
-    public List<Category> getCategories() {
+    private List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+    private void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+            "%d: %s, %d, %s, %s",
+            id,
+            title,
+            rating,
+            thumbnail,
+            Arrays.toString(categories.toArray())
+        );
     }
 }

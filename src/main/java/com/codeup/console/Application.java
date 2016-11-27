@@ -13,7 +13,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,17 +34,14 @@ public class Application {
             "shrek.png",
             movieCategories
         );
-
         movies.add(shrek);
-
-        System.out.println(Arrays.toString(shrek.getCategories().toArray()));
 
         Category category = Category.named("action");
         categories.add(category);
         List<Category> all = categories.all();
 
-        System.out.println(MessageFormat.format(
-            "{0}: {1}",
+        System.out.println(String.format(
+            "%d: %s",
             category.id(),
             category.name()
         ));
