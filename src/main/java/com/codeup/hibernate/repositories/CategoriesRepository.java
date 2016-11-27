@@ -1,11 +1,10 @@
 /**
  * This source file is subject to the license that is bundled with this package in the file LICENSE.
  */
-package com.codeup.hibernate;
+package com.codeup.hibernate.repositories;
 
 import com.codeup.movies.Categories;
 import com.codeup.movies.Category;
-import com.codeup.movies.Movie;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 

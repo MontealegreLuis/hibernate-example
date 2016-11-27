@@ -3,9 +3,9 @@
  */
 package com.codeup.console;
 
-import com.codeup.hibernate.CategoriesRepository;
+import com.codeup.hibernate.repositories.CategoriesRepository;
 import com.codeup.hibernate.Hibernate;
-import com.codeup.hibernate.MoviesRepository;
+import com.codeup.hibernate.repositories.MoviesRepository;
 import com.codeup.movies.Category;
 import com.codeup.movies.Movie;
 import org.hibernate.Session;
