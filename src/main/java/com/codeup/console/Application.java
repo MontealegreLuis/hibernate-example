@@ -4,14 +4,11 @@
 package com.codeup.console;
 
 import com.codeup.hibernate.CategoriesRepository;
+import com.codeup.hibernate.Hibernate;
 import com.codeup.hibernate.MoviesRepository;
 import com.codeup.movies.Category;
 import com.codeup.movies.Movie;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +16,7 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        Session session = openSession();
+        Session session = Hibernate.openSession();
 
         CategoriesRepository categories = new CategoriesRepository(session);
         MoviesRepository movies = new MoviesRepository(session);
@@ -48,19 +45,5 @@ public class Application {
         System.out.println(Arrays.toString(all.toArray()));
 
         session.close();
-    }
-
-    private static Session openSession() {
-        StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-            .configure()
-            .build()
-        ;
-
-        SessionFactory sessionFactory = new MetadataSources(registry)
-            .buildMetadata()
-            .buildSessionFactory()
-        ;
-
-        return sessionFactory.openSession();
     }
 }
