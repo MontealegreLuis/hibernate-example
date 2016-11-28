@@ -10,40 +10,59 @@ import com.codeup.movies.Category;
 import com.codeup.movies.Movie;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class Application {
+
     public static void main(String[] args) {
         Session session = Hibernate.openSession();
-
         CategoriesRepository categories = new CategoriesRepository(session);
         MoviesRepository movies = new MoviesRepository(session);
-
-        List<Category> movieCategories = new ArrayList<Category>();
-        movieCategories.add(categories.with(5));
-        movieCategories.add(categories.with(6));
-
-        Movie shrek = Movie.publish(
-            "Shrek",
-            5,
-            "shrek.png",
-            movieCategories
+        MoviesConsole console = new MoviesConsole(
+            new Scanner(System.in).useDelimiter("\n"),
+            System.out
         );
-        movies.add(shrek);
 
+        console.showMenu();
+        int option = console.chooseOption();
+
+        switch (option) {
+            case MoviesConsole.ADD_MOVIE:
+                String title = console.askForMovieTitle();
+                int rating = console.askForMovieRating();
+                String thumbnail = console.askForThumbnail();
+                List<Category> movieCategories = console.chooseCategories(
+                    categories.all()
+                );
+                Movie movie = Movie.publish(
+                    title,
+                    rating,
+                    thumbnail,
+                    movieCategories
+                );
+                movies.add(movie);
+                break;
+            default:
+                System.out.println("Thank you!");
+        }
+
+        session.close();
+    }
+
+    private static void addCategory(CategoriesRepository categories, PrintStream output) {
         Category category = Category.named("action");
         categories.add(category);
         List<Category> all = categories.all();
 
-        System.out.println(String.format(
+        output.println(String.format(
             "%d: %s",
             category.id(),
             category.name()
         ));
-        System.out.println(Arrays.toString(all.toArray()));
-
-        session.close();
+        output.println(Arrays.toString(all.toArray()));
     }
+
 }
