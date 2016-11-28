@@ -43,6 +43,6 @@ public class Category implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%d: %s, %s", id, name, movies.size());
+        return name;
     }
 }

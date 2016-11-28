@@ -21,9 +21,11 @@ public class Application {
         Session session = Hibernate.openSession();
         CategoriesRepository categories = new CategoriesRepository(session);
         MoviesRepository movies = new MoviesRepository(session);
+        Scanner input = new Scanner(System.in).useDelimiter("\n");
+        PrintStream output = System.out;
         MoviesConsole console = new MoviesConsole(
-            new Scanner(System.in).useDelimiter("\n"),
-            System.out
+            output,
+            new Console(input, output)
         );
 
         console.showMenu();
@@ -46,7 +48,7 @@ public class Application {
                 movies.add(movie);
                 break;
             default:
-                System.out.println("Thank you!");
+                output.println("Thank you!");
         }
 
         session.close();

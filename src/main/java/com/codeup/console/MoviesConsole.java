@@ -5,16 +5,16 @@ import com.codeup.movies.Category;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 class MoviesConsole {
-    public static final int ADD_MOVIE = 1;
-    private final Scanner input;
+    static final int ADD_MOVIE = 1;
     private final PrintStream output;
+    private final Console console;
+    private ArrayList<Category> movieCategories = new ArrayList<>();
 
-    MoviesConsole(Scanner input, PrintStream output) {
-        this.input = input;
+    MoviesConsole(PrintStream output, Console console) {
         this.output = output;
+        this.console = console;
     }
 
     void showMenu() {
@@ -25,41 +25,44 @@ class MoviesConsole {
     }
 
     int chooseOption() {
-        output.print("Choose an option 1-2 ");
-        return input.nextInt();
+        return console.promptForNumberBetween(
+            "Choose an option (1-2): ",
+            1,
+            2
+        );
     }
 
     String askForMovieTitle() {
-        output.print("Enter a title for the movie: ");
-        return input.next();
+        return console.promptForNonEmptyText("Enter a title for the movie: ");
     }
 
     int askForMovieRating() {
-        output.print("\nEnter a rating for the movie (1-5): ");
-        return input.nextInt();
+        return console.promptForNumberBetween(
+            "\nEnter a rating for the movie (1-5): ",
+            1,
+            5
+        );
     }
 
     String askForThumbnail() {
-        output.print("Path to the thumbnail image for the movie: ");
-        return input.next();
+        return console.promptForNonEmptyText(
+            "Path to the thumbnail image for the movie: "
+        );
     }
 
     List<Category> chooseCategories(List<Category> availableCategories) {
-        ArrayList<Category> movieCategories = new ArrayList<>();
-        do {
-            int selectedCategory = showCategories(availableCategories);
-            movieCategories.add(availableCategories.get(selectedCategory));
-            output.println("Do yu want to add another category? (y/n)");
-        } while ("y".equalsIgnoreCase(input.next()));
+        console.askYesNoQuestion(
+            "Do you want to add another category? (y/n)",
+            () -> addMovieCategory(availableCategories)
+        );
         return movieCategories;
     }
 
-    private int showCategories(List<Category> availableCategories) {
-        output.println("Choose a category from the list");
-        for (int i = 0; i < availableCategories.size(); i++) {
-            Category category = availableCategories.get(i);
-            output.println((i + 1) + ") " + category.name());
-        }
-        return input.nextInt() - 1;
+    private void addMovieCategory(List<Category> availableCategories) {
+        int selectedCategory = console.chooseFromList(
+            "Choose a category: ",
+            availableCategories
+        );
+        movieCategories.add(availableCategories.get(selectedCategory));
     }
 }
