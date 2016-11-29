@@ -3,7 +3,10 @@
  */
 package com.codeup.movies;
 
+import java.util.List;
+
 public interface Movies {
     void add(Movie movie);
     Movie with(int id);
+    List<Movie> withTitleSimilarTo(String title);
 }

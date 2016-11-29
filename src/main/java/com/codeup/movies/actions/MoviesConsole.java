@@ -2,6 +2,7 @@ package com.codeup.movies.actions;
 
 import com.codeup.console.Console;
 import com.codeup.movies.Category;
+import com.codeup.movies.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,5 +47,17 @@ public class MoviesConsole {
             availableCategories
         );
         movieCategories.add(availableCategories.get(selectedCategory));
+    }
+
+    void showMovies(List<Movie> movies) {
+        String moviesTable = String.format("%d results found.%n", movies.size());
+        for (Movie movie : movies) {
+            moviesTable += String.format(
+                "%s, rated with %d stars.%n",
+                movie.title(),
+                movie.rating()
+            );
+        }
+        console.message(moviesTable);
     }
 }

@@ -8,16 +8,10 @@ import com.codeup.console.Menu;
 import com.codeup.hibernate.repositories.CategoriesRepository;
 import com.codeup.hibernate.Hibernate;
 import com.codeup.hibernate.repositories.MoviesRepository;
-import com.codeup.movies.Category;
-import com.codeup.movies.actions.AddCategoryAction;
-import com.codeup.movies.actions.AddMovieAction;
-import com.codeup.movies.actions.CategoriesConsole;
-import com.codeup.movies.actions.MoviesConsole;
+import com.codeup.movies.actions.*;
 import org.hibernate.Session;
 
 import java.io.PrintStream;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class Application {
@@ -29,28 +23,28 @@ public class Application {
         PrintStream output = System.out;
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         Console console = new Console(input, output);
+        MoviesConsole moviesConsole = new MoviesConsole(console);
         AddMovieAction addMovie = new AddMovieAction(
             categories,
             movies,
-            new MoviesConsole(console)
+            moviesConsole
         );
         AddCategoryAction addCategory = new AddCategoryAction(
             categories,
             new CategoriesConsole(console)
         );
-
+        SearchMovieByTitle searchMovieByTitle = new SearchMovieByTitle(
+            movies,
+            moviesConsole
+        );
         Menu menu = new Menu(console);
         menu.addOption("Add a movie", addMovie);
         menu.addOption("Add a category", addCategory);
+        menu.addOption("Search a movie by its title", searchMovieByTitle);
         menu.setExitOption(() -> output.println("Thank you!"));
         menu.run();
 
         session.close();
         input.close();
-    }
-
-    private static void showCategories(CategoriesRepository categories, PrintStream output) {
-        List<Category> all = categories.all();
-        output.println(Arrays.toString(all.toArray()));
     }
 }
