@@ -18,9 +18,8 @@ class Console {
     }
 
     String promptForNonEmptyText(String message) {
-        String text;
         output.print(message);
-        text = input.next();
+        String text = input.next();
         if (text.trim().isEmpty()) {
             output.println("Enter a non empty value");
             return promptForNonEmptyText(message);
@@ -62,5 +61,9 @@ class Console {
             action.execute();
             output.println(message);
         } while ("y".equalsIgnoreCase(input.next()));
+    }
+
+    public void message(String message) {
+        output.println(message);
     }
 }

@@ -7,7 +7,7 @@ import com.codeup.hibernate.repositories.CategoriesRepository;
 import com.codeup.hibernate.Hibernate;
 import com.codeup.hibernate.repositories.MoviesRepository;
 import com.codeup.movies.Category;
-import com.codeup.movies.Movie;
+import com.codeup.movies.actions.AddMovieAction;
 import org.hibernate.Session;
 
 import java.io.PrintStream;
@@ -21,37 +21,20 @@ public class Application {
         Session session = Hibernate.openSession();
         CategoriesRepository categories = new CategoriesRepository(session);
         MoviesRepository movies = new MoviesRepository(session);
-        Scanner input = new Scanner(System.in).useDelimiter("\n");
         PrintStream output = System.out;
-        MoviesConsole console = new MoviesConsole(
-            output,
-            new Console(input, output)
-        );
+        Scanner input = new Scanner(System.in).useDelimiter("\n");
+        Console console = new Console(input, output);
+        MoviesConsole moviesConsole = new MoviesConsole(console);
+        AddMovieAction addMovie = new AddMovieAction(categories, movies, moviesConsole);
 
-        console.showMenu();
-        int option = console.chooseOption();
-
-        switch (option) {
-            case MoviesConsole.ADD_MOVIE:
-                String title = console.askForMovieTitle();
-                int rating = console.askForMovieRating();
-                String thumbnail = console.askForThumbnail();
-                List<Category> movieCategories = console.chooseCategories(
-                    categories.all()
-                );
-                Movie movie = Movie.publish(
-                    title,
-                    rating,
-                    thumbnail,
-                    movieCategories
-                );
-                movies.add(movie);
-                break;
-            default:
-                output.println("Thank you!");
-        }
+        Menu menu = new Menu(console);
+        menu.addOption(new MenuOption("Add a movie", addMovie));
+        menu.setExitOption(() -> output.println("Thank you!"));
+        menu.render();
+        menu.run();
 
         session.close();
+        input.close();
     }
 
     private static void addCategory(CategoriesRepository categories, PrintStream output) {
@@ -66,5 +49,4 @@ public class Application {
         ));
         output.println(Arrays.toString(all.toArray()));
     }
-
 }

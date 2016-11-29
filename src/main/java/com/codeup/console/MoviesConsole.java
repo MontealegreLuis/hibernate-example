@@ -2,55 +2,36 @@ package com.codeup.console;
 
 import com.codeup.movies.Category;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-class MoviesConsole {
-    static final int ADD_MOVIE = 1;
-    private final PrintStream output;
+public class MoviesConsole {
     private final Console console;
     private ArrayList<Category> movieCategories = new ArrayList<>();
 
-    MoviesConsole(PrintStream output, Console console) {
-        this.output = output;
+    MoviesConsole(Console console) {
         this.console = console;
     }
 
-    void showMenu() {
-        output.println("Hibernate Movies Database HMDb");
-        output.println("Choose an option");
-        output.println("1) Add a movie");
-        output.println("2) Exit");
-    }
-
-    int chooseOption() {
-        return console.promptForNumberBetween(
-            "Choose an option (1-2): ",
-            1,
-            2
-        );
-    }
-
-    String askForMovieTitle() {
+    public String askForMovieTitle() {
         return console.promptForNonEmptyText("Enter a title for the movie: ");
     }
 
-    int askForMovieRating() {
+    public int askForMovieRating() {
         return console.promptForNumberBetween(
-            "\nEnter a rating for the movie (1-5): ",
+            "Enter a rating for the movie (1-5): ",
             1,
             5
         );
     }
 
-    String askForThumbnail() {
+    public String askForThumbnail() {
         return console.promptForNonEmptyText(
             "Path to the thumbnail image for the movie: "
         );
     }
 
-    List<Category> chooseCategories(List<Category> availableCategories) {
+    public List<Category> chooseCategories(List<Category> availableCategories) {
         console.askYesNoQuestion(
             "Do you want to add another category? (y/n)",
             () -> addMovieCategory(availableCategories)
