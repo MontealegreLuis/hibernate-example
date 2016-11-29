@@ -24,7 +24,7 @@ public class Menu {
     public void run() {
         int option;
         do {
-            render();
+            console.message(render());
             option = console.promptForNumberBetween(
                 "Choose an option (1-" + options.size() + "): ",
                 1,

@@ -9,7 +9,9 @@ import com.codeup.hibernate.repositories.CategoriesRepository;
 import com.codeup.hibernate.Hibernate;
 import com.codeup.hibernate.repositories.MoviesRepository;
 import com.codeup.movies.Category;
+import com.codeup.movies.actions.AddCategoryAction;
 import com.codeup.movies.actions.AddMovieAction;
+import com.codeup.movies.actions.CategoriesConsole;
 import com.codeup.movies.actions.MoviesConsole;
 import org.hibernate.Session;
 
@@ -27,11 +29,19 @@ public class Application {
         PrintStream output = System.out;
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         Console console = new Console(input, output);
-        MoviesConsole moviesConsole = new MoviesConsole(console);
-        AddMovieAction addMovie = new AddMovieAction(categories, movies, moviesConsole);
+        AddMovieAction addMovie = new AddMovieAction(
+            categories,
+            movies,
+            new MoviesConsole(console)
+        );
+        AddCategoryAction addCategory = new AddCategoryAction(
+            categories,
+            new CategoriesConsole(console)
+        );
 
         Menu menu = new Menu(console);
         menu.addOption("Add a movie", addMovie);
+        menu.addOption("Add a category", addCategory);
         menu.setExitOption(() -> output.println("Thank you!"));
         menu.run();
 
@@ -39,16 +49,8 @@ public class Application {
         input.close();
     }
 
-    private static void addCategory(CategoriesRepository categories, PrintStream output) {
-        Category category = Category.named("action");
-        categories.add(category);
+    private static void showCategories(CategoriesRepository categories, PrintStream output) {
         List<Category> all = categories.all();
-
-        output.println(String.format(
-            "%d: %s",
-            category.id(),
-            category.name()
-        ));
         output.println(Arrays.toString(all.toArray()));
     }
 }
