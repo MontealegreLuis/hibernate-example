@@ -24,12 +24,12 @@ public class Application {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         Console console = new Console(input, output);
         MoviesConsole moviesConsole = new MoviesConsole(console);
-        AddMovieAction addMovie = new AddMovieAction(
+        AddMovie addMovie = new AddMovie(
             categories,
             movies,
             moviesConsole
         );
-        AddCategoryAction addCategory = new AddCategoryAction(
+        AddCategory addCategory = new AddCategory(
             categories,
             new CategoriesConsole(console)
         );

@@ -7,11 +7,11 @@ import com.codeup.console.Action;
 import com.codeup.movies.Categories;
 import com.codeup.movies.Category;
 
-public class AddCategoryAction implements Action {
+public class AddCategory implements Action {
     private final Categories categories;
     private final CategoriesConsole console;
 
-    public AddCategoryAction(Categories categories, CategoriesConsole console) {
+    public AddCategory(Categories categories, CategoriesConsole console) {
         this.categories = categories;
         this.console = console;
     }

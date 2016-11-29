@@ -5,12 +5,12 @@ import com.codeup.movies.Categories;
 import com.codeup.movies.Movie;
 import com.codeup.movies.Movies;
 
-public class AddMovieAction implements Action {
+public class AddMovie implements Action {
     private final Categories categories;
     private final Movies movies;
     private final MoviesConsole console;
 
-    public AddMovieAction(
+    public AddMovie(
         Categories categories,
         Movies movies,
         MoviesConsole console
