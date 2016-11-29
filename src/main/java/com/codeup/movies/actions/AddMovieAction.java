@@ -1,7 +1,6 @@
 package com.codeup.movies.actions;
 
 import com.codeup.console.Action;
-import com.codeup.console.MoviesConsole;
 import com.codeup.movies.Categories;
 import com.codeup.movies.Movie;
 import com.codeup.movies.Movies;

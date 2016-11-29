@@ -1,13 +1,16 @@
 /**
  * This source file is subject to the license that is bundled with this package in the file LICENSE.
  */
-package com.codeup.console;
+package com.codeup;
 
+import com.codeup.console.Console;
+import com.codeup.console.Menu;
 import com.codeup.hibernate.repositories.CategoriesRepository;
 import com.codeup.hibernate.Hibernate;
 import com.codeup.hibernate.repositories.MoviesRepository;
 import com.codeup.movies.Category;
 import com.codeup.movies.actions.AddMovieAction;
+import com.codeup.movies.actions.MoviesConsole;
 import org.hibernate.Session;
 
 import java.io.PrintStream;
@@ -28,9 +31,8 @@ public class Application {
         AddMovieAction addMovie = new AddMovieAction(categories, movies, moviesConsole);
 
         Menu menu = new Menu(console);
-        menu.addOption(new MenuOption("Add a movie", addMovie));
+        menu.addOption("Add a movie", addMovie);
         menu.setExitOption(() -> output.println("Thank you!"));
-        menu.render();
         menu.run();
 
         session.close();

@@ -1,5 +1,6 @@
-package com.codeup.console;
+package com.codeup.movies.actions;
 
+import com.codeup.console.Console;
 import com.codeup.movies.Category;
 
 import java.util.ArrayList;
@@ -9,15 +10,15 @@ public class MoviesConsole {
     private final Console console;
     private ArrayList<Category> movieCategories = new ArrayList<>();
 
-    MoviesConsole(Console console) {
+    public MoviesConsole(Console console) {
         this.console = console;
     }
 
-    public String askForMovieTitle() {
+    String askForMovieTitle() {
         return console.promptForNonEmptyText("Enter a title for the movie: ");
     }
 
-    public int askForMovieRating() {
+    int askForMovieRating() {
         return console.promptForNumberBetween(
             "Enter a rating for the movie (1-5): ",
             1,
@@ -25,13 +26,13 @@ public class MoviesConsole {
         );
     }
 
-    public String askForThumbnail() {
+    String askForThumbnail() {
         return console.promptForNonEmptyText(
             "Path to the thumbnail image for the movie: "
         );
     }
 
-    public List<Category> chooseCategories(List<Category> availableCategories) {
+    List<Category> chooseCategories(List<Category> availableCategories) {
         console.askYesNoQuestion(
             "Do you want to add another category? (y/n)",
             () -> addMovieCategory(availableCategories)

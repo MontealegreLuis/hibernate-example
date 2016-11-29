@@ -16,27 +16,15 @@ public class Menu {
         this.console = console;
     }
 
-    public void addOption(MenuOption option) {
-        options.put(next, option);
+    public void addOption(String title, Action action) {
+        options.put(next, new MenuOption(title, action));
         next++;
-    }
-
-    public void render() {
-        console.message(toString());
-    }
-
-    @Override
-    public String toString() {
-        String menu = "";
-        for (Map.Entry<Integer, MenuOption> pair : options.entrySet()) {
-            menu += String.format("%d) %s\n", pair.getKey() + 1, pair.getValue());
-        }
-        return menu;
     }
 
     public void run() {
         int option;
         do {
+            render();
             option = console.promptForNumberBetween(
                 "Choose an option (1-" + options.size() + "): ",
                 1,
@@ -46,8 +34,16 @@ public class Menu {
         } while (option - 1 != exitOption);
     }
 
+    private String render() {
+        String menu = "";
+        for (Map.Entry<Integer, MenuOption> pair : options.entrySet()) {
+            menu += String.format("%d) %s\n", pair.getKey() + 1, pair.getValue());
+        }
+        return menu;
+    }
+
     public void setExitOption(Action action) {
         exitOption = next;
-        addOption(new MenuOption("Exit", action));
+        addOption("Exit", action);
     }
 }

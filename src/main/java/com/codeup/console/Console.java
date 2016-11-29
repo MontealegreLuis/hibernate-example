@@ -8,16 +8,16 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-class Console {
+public class Console {
     private final Scanner input;
     private final PrintStream output;
 
-    Console(Scanner input, PrintStream output) {
+    public Console(Scanner input, PrintStream output) {
         this.input = input;
         this.output = output;
     }
 
-    String promptForNonEmptyText(String message) {
+    public String promptForNonEmptyText(String message) {
         output.print(message);
         String text = input.next();
         if (text.trim().isEmpty()) {
@@ -27,7 +27,7 @@ class Console {
         return text;
     }
 
-    int promptForNumberBetween(String message, int min, int max) {
+    public int promptForNumberBetween(String message, int min, int max) {
         int number;
         output.print(message);
         try {
@@ -48,7 +48,7 @@ class Console {
         return number;
     }
 
-    int chooseFromList(String message, List options) {
+    public int chooseFromList(String message, List options) {
         output.println(message);
         for (int i = 0; i < options.size(); i++) {
             output.println((i + 1) + ") " + options.get(i));
@@ -56,7 +56,7 @@ class Console {
         return input.nextInt() - 1;
     }
 
-    void askYesNoQuestion(String message, Action action) {
+    public void askYesNoQuestion(String message, Action action) {
         do {
             action.execute();
             output.println(message);

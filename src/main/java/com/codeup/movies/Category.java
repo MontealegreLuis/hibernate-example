@@ -11,14 +11,6 @@ public class Category implements Serializable {
     private String name;
     private List<Movie> movies;
 
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-    }
-
     protected Category() {}
 
     private Category(String name) {
@@ -29,12 +21,20 @@ public class Category implements Serializable {
         return new Category(name);
     }
 
-    public long id() {
+    public int id() {
         return id;
     }
 
     public String name() {
         return name;
+    }
+
+    private List<Movie> getMovies() {
+        return movies;
+    }
+
+    private void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
 
     public void addMovie(Movie movie) {
