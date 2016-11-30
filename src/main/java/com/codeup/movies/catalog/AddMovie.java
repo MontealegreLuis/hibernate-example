@@ -1,4 +1,4 @@
-package com.codeup.movies.actions;
+package com.codeup.movies.catalog;
 
 import com.codeup.console.Action;
 import com.codeup.movies.Categories;

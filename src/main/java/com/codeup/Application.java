@@ -8,12 +8,11 @@ import com.codeup.console.Menu;
 import com.codeup.hibernate.repositories.CategoriesRepository;
 import com.codeup.hibernate.Hibernate;
 import com.codeup.hibernate.repositories.MoviesRepository;
-import com.codeup.movies.actions.*;
+import com.codeup.movies.catalog.*;
 import com.codeup.movies.console.CategoriesConsole;
 import com.codeup.movies.console.MoviesConsole;
 import org.hibernate.Session;
 
-import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Application {
@@ -22,9 +21,8 @@ public class Application {
         Session session = Hibernate.openSession();
         CategoriesRepository categories = new CategoriesRepository(session);
         MoviesRepository movies = new MoviesRepository(session);
-        PrintStream output = System.out;
         Scanner input = new Scanner(System.in).useDelimiter("\n");
-        Console console = new Console(input, output);
+        Console console = new Console(input, System.out);
         MoviesConsole moviesConsole = new MoviesConsole(console);
         AddMovie addMovie = new AddMovie(
             categories,
