@@ -33,7 +33,7 @@ public class MoviesRepository implements Movies {
     @Override
     public List<Movie> withTitleSimilarTo(String title) {
         Query query = session.createQuery("FROM Movie WHERE title LIKE ?");
-        query.setParameter(0, title);
+        query.setParameter(0, "%" + title + "%");
 
         @SuppressWarnings("unchecked")
         List movies = query.getResultList();
