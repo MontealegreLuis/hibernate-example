@@ -3,6 +3,7 @@
  */
 package com.codeup.console;
 
+import com.codeup.validation.NumberWithinRange;
 import com.codeup.validation.Validator;
 
 import java.io.PrintStream;
@@ -47,11 +48,20 @@ public class Console {
     }
 
     public int chooseFromList(String message, List options) {
-        output.println(message);
+        output.println(buildOptionsList(options));
+        int chosenNumber = promptForNumber(
+            message,
+            new NumberWithinRange(1, options.size())
+        );
+        return chosenNumber - 1;
+    }
+
+    private String buildOptionsList(List options) {
+        String list = "";
         for (int i = 0; i < options.size(); i++) {
-            output.println((i + 1) + ") " + options.get(i));
+            list += String.format("%n%d) %s", i + 1, options.get(i));
         }
-        return input.nextInt() - 1;
+        return list;
     }
 
     public void askYesNoQuestion(String message, Action action) {
