@@ -1,7 +1,7 @@
 /**
  * This source file is subject to the license that is bundled with this package in the file LICENSE.
  */
-package com.codeup.movies.actions;
+package com.codeup.movies.console;
 
 import com.codeup.console.Console;
 
@@ -12,7 +12,7 @@ public class CategoriesConsole {
         this.console = console;
     }
 
-    String askForCategoryName() {
+    public String askForCategoryName() {
         return console.promptForNonEmptyText("Category name: ");
     }
 }

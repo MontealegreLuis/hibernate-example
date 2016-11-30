@@ -1,4 +1,4 @@
-package com.codeup.movies.actions;
+package com.codeup.movies.console;
 
 import com.codeup.console.Console;
 import com.codeup.movies.Category;
@@ -15,11 +15,11 @@ public class MoviesConsole {
         this.console = console;
     }
 
-    String askForMovieTitle() {
+    public String askForMovieTitle() {
         return console.promptForNonEmptyText("Enter a title for the movie: ");
     }
 
-    int askForMovieRating() {
+    public int askForMovieRating() {
         return console.promptForNumberBetween(
             "Enter a rating for the movie (1-5): ",
             1,
@@ -27,13 +27,13 @@ public class MoviesConsole {
         );
     }
 
-    String askForThumbnail() {
+    public String askForThumbnail() {
         return console.promptForNonEmptyText(
             "Path to the thumbnail image for the movie: "
         );
     }
 
-    List<Category> chooseCategories(List<Category> availableCategories) {
+    public List<Category> chooseCategories(List<Category> availableCategories) {
         console.askYesNoQuestion(
             "Do you want to add another category? (y/n)",
             () -> addMovieCategory(availableCategories)
@@ -49,7 +49,7 @@ public class MoviesConsole {
         movieCategories.add(availableCategories.get(selectedCategory));
     }
 
-    void showMovies(List<Movie> movies) {
+    public void showMovies(List<Movie> movies) {
         String moviesTable = String.format("%d results found.%n", movies.size());
         for (Movie movie : movies) {
             moviesTable += String.format(

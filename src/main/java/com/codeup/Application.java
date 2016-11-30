@@ -9,6 +9,8 @@ import com.codeup.hibernate.repositories.CategoriesRepository;
 import com.codeup.hibernate.Hibernate;
 import com.codeup.hibernate.repositories.MoviesRepository;
 import com.codeup.movies.actions.*;
+import com.codeup.movies.console.CategoriesConsole;
+import com.codeup.movies.console.MoviesConsole;
 import org.hibernate.Session;
 
 import java.io.PrintStream;
@@ -41,7 +43,7 @@ public class Application {
         menu.addOption("Add a movie", addMovie);
         menu.addOption("Add a category", addCategory);
         menu.addOption("Search a movie by its title", searchMovieByTitle);
-        menu.setExitOption(() -> output.println("Thank you!"));
+        menu.setExitMessage("Thank you!");
         menu.run();
 
         session.close();

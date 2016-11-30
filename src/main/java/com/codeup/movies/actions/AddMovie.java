@@ -4,6 +4,7 @@ import com.codeup.console.Action;
 import com.codeup.movies.Categories;
 import com.codeup.movies.Movie;
 import com.codeup.movies.Movies;
+import com.codeup.movies.console.MoviesConsole;
 
 public class AddMovie implements Action {
     private final Categories categories;

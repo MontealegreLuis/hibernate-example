@@ -6,6 +6,7 @@ package com.codeup.movies.actions;
 import com.codeup.console.Action;
 import com.codeup.movies.Categories;
 import com.codeup.movies.Category;
+import com.codeup.movies.console.CategoriesConsole;
 
 public class AddCategory implements Action {
     private final Categories categories;

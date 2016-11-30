@@ -5,6 +5,7 @@ package com.codeup.movies.actions;
 
 import com.codeup.console.Action;
 import com.codeup.movies.Movies;
+import com.codeup.movies.console.MoviesConsole;
 
 public class SearchMovieByTitle implements Action {
     private final Movies movies;

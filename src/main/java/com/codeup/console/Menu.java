@@ -42,8 +42,8 @@ public class Menu {
         return menu;
     }
 
-    public void setExitOption(Action action) {
+    public void setExitMessage(String message) {
         exitOption = next;
-        addOption("Exit", action);
+        addOption(message, () -> console.message("Thank you!"));
     }
 }
