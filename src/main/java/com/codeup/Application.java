@@ -12,6 +12,7 @@ import com.codeup.movies.console.actions.AddCategoryAction;
 import com.codeup.movies.catalog.*;
 import com.codeup.movies.console.CategoriesConsole;
 import com.codeup.movies.console.MoviesConsole;
+import com.codeup.movies.console.actions.AddMovieAction;
 import org.hibernate.Session;
 
 import java.util.Scanner;
@@ -25,10 +26,10 @@ public class Application {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         Console console = new Console(input, System.out);
         MoviesConsole moviesConsole = new MoviesConsole(console);
-        AddMovie addMovie = new AddMovie(
-            categories,
-            movies,
-            moviesConsole
+        AddMovieAction addMovie = new AddMovieAction(
+            new AddMovie(movies),
+            moviesConsole,
+            categories
         );
         AddCategoryAction addCategory = new AddCategoryAction(
             new AddCategory(categories),

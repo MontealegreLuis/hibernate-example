@@ -1,32 +1,29 @@
 package com.codeup.movies.catalog;
 
-import com.codeup.console.Action;
-import com.codeup.movies.Categories;
+import com.codeup.movies.Category;
 import com.codeup.movies.Movie;
 import com.codeup.movies.Movies;
-import com.codeup.movies.console.MoviesConsole;
 
-public class AddMovie implements Action {
-    private final Categories categories;
+import java.util.List;
+
+public class AddMovie {
     private final Movies movies;
-    private final MoviesConsole console;
 
-    public AddMovie(
-        Categories categories,
-        Movies movies,
-        MoviesConsole console
-    ) {
-        this.categories = categories;
+    public AddMovie(Movies movies) {
         this.movies = movies;
-        this.console = console;
     }
 
-    public void execute() {
+    public void withDetails(
+        String title,
+        int rating,
+        String thumbnail,
+        List<Category> categories
+    ) {
         Movie movie = Movie.publish(
-            console.askForMovieTitle(),
-            console.askForMovieRating(),
-            console.askForThumbnail(),
-            console.chooseCategories(categories.all())
+            title,
+            rating,
+            thumbnail,
+            categories
         );
         movies.add(movie);
     }
