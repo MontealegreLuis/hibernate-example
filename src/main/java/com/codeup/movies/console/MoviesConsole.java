@@ -4,6 +4,7 @@ import com.codeup.console.Console;
 import com.codeup.movies.Category;
 import com.codeup.movies.Movie;
 import com.codeup.validation.IntegerFromString;
+import com.codeup.validation.NonEmptyString;
 import com.codeup.validation.NumberWithinRange;
 
 import java.util.ArrayList;
@@ -18,7 +19,10 @@ public class MoviesConsole {
     }
 
     public String askForMovieTitle() {
-        return console.promptForNonEmptyText("Enter a title for the movie: ");
+        return console.promptForText(
+            "Enter a title for the movie: ",
+            new NonEmptyString()
+        );
     }
 
     public int askForMovieRating() {
@@ -29,8 +33,9 @@ public class MoviesConsole {
     }
 
     public String askForThumbnail() {
-        return console.promptForNonEmptyText(
-            "Path to the thumbnail image for the movie: "
+        return console.promptForText(
+            "Path to the thumbnail image for the movie: ",
+            new NonEmptyString()
         );
     }
 

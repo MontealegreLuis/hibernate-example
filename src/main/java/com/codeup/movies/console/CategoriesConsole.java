@@ -4,6 +4,7 @@
 package com.codeup.movies.console;
 
 import com.codeup.console.Console;
+import com.codeup.validation.NonEmptyString;
 
 public class CategoriesConsole {
     private final Console console;
@@ -13,6 +14,6 @@ public class CategoriesConsole {
     }
 
     public String askForCategoryName() {
-        return console.promptForNonEmptyText("Category name: ");
+        return console.promptForText("Category name: ", new NonEmptyString());
     }
 }

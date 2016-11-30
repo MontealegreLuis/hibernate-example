@@ -20,12 +20,12 @@ public class Console {
         this.output = output;
     }
 
-    public String promptForNonEmptyText(String message) {
+    public String promptForText(String message, Validator<String> validator) {
         output.print(message);
         String text = input.next();
-        if (text.trim().isEmpty()) {
-            output.println("Enter a non empty value");
-            return promptForNonEmptyText(message);
+        if (!validator.isValid(text)) {
+            output.println(validator.errorMessage());
+            return promptForText(message, validator);
         }
         return text;
     }
