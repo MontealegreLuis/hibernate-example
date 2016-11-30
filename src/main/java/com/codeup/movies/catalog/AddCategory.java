@@ -8,17 +8,14 @@ import com.codeup.movies.Categories;
 import com.codeup.movies.Category;
 import com.codeup.movies.console.CategoriesConsole;
 
-public class AddCategory implements Action {
+public class AddCategory {
     private final Categories categories;
-    private final CategoriesConsole console;
 
-    public AddCategory(Categories categories, CategoriesConsole console) {
+    public AddCategory(Categories categories) {
         this.categories = categories;
-        this.console = console;
     }
 
-    @Override
-    public void execute() {
-        categories.add(Category.named(console.askForCategoryName()));
+    public void withName(String name) {
+        categories.add(Category.named(name));
     }
 }

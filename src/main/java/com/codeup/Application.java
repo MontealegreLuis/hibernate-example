@@ -8,6 +8,7 @@ import com.codeup.console.Menu;
 import com.codeup.hibernate.repositories.CategoriesRepository;
 import com.codeup.hibernate.Hibernate;
 import com.codeup.hibernate.repositories.MoviesRepository;
+import com.codeup.movies.console.actions.AddCategoryAction;
 import com.codeup.movies.catalog.*;
 import com.codeup.movies.console.CategoriesConsole;
 import com.codeup.movies.console.MoviesConsole;
@@ -29,8 +30,8 @@ public class Application {
             movies,
             moviesConsole
         );
-        AddCategory addCategory = new AddCategory(
-            categories,
+        AddCategoryAction addCategory = new AddCategoryAction(
+            new AddCategory(categories),
             new CategoriesConsole(console)
         );
         SearchMovieByTitle searchMovieByTitle = new SearchMovieByTitle(
