@@ -36,7 +36,20 @@ public class MoviesRepository implements Movies {
         query.setParameter(0, "%" + title + "%");
 
         @SuppressWarnings("unchecked")
-        List movies = query.getResultList();
+        List<Movie> movies = query.getResultList();
+
+        return movies;
+    }
+
+    @Override
+    public List<Movie> underCategory(int categoryId) {
+        Query query = session.createQuery(
+            "SELECT m FROM Movie m JOIN m.categories c WHERE c.id = ?"
+        );
+        query.setParameter(0, categoryId);
+
+        @SuppressWarnings("unchecked")
+        List<Movie> movies = query.getResultList();
 
         return movies;
     }

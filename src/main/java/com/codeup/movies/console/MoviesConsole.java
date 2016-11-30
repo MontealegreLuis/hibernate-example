@@ -41,6 +41,14 @@ public class MoviesConsole {
         return movieCategories;
     }
 
+    public Category chooseACategoryFrom(List<Category> availableCategories) {
+        int selectedCategory = console.chooseFromList(
+            "Choose a category: ",
+            availableCategories
+        );
+        return availableCategories.get(selectedCategory);
+    }
+
     private void addMovieCategory(List<Category> availableCategories) {
         int selectedCategory = console.chooseFromList(
             "Choose a category: ",

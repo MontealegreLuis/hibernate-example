@@ -9,4 +9,5 @@ public interface Movies {
     void add(Movie movie);
     Movie with(int id);
     List<Movie> withTitleSimilarTo(String title);
+    List<Movie> underCategory(int categoryId);
 }
