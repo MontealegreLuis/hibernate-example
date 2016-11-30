@@ -4,6 +4,7 @@
 package com.codeup.console;
 
 import com.codeup.validation.IntegerFromString;
+import com.codeup.validation.IsInWhiteList;
 import com.codeup.validation.NumberWithinRange;
 import com.codeup.validation.Validator;
 
@@ -58,10 +59,12 @@ public class Console {
     }
 
     public void askYesNoQuestion(String message, Action action) {
+        String answer;
         do {
             action.execute();
             output.println(message);
-        } while ("y".equalsIgnoreCase(input.next()));
+            answer = promptForText(message, new IsInWhiteList("y", "n"));
+        } while ("y".equalsIgnoreCase(answer));
     }
 
     public void message(String message) {
