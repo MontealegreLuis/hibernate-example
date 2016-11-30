@@ -3,6 +3,7 @@ package com.codeup.movies.console;
 import com.codeup.console.Console;
 import com.codeup.movies.Category;
 import com.codeup.movies.Movie;
+import com.codeup.validation.IntegerFromString;
 import com.codeup.validation.NumberWithinRange;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class MoviesConsole {
     public int askForMovieRating() {
         return console.promptForInteger(
             "Enter a rating for the movie (1-5): ",
-            new NumberWithinRange(1, 5)
+            new IntegerFromString(new NumberWithinRange(1, 5))
         );
     }
 

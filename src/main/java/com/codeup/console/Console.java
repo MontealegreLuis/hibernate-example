@@ -3,7 +3,7 @@
  */
 package com.codeup.console;
 
-import com.codeup.validation.IsInteger;
+import com.codeup.validation.IntegerFromString;
 import com.codeup.validation.NumberWithinRange;
 import com.codeup.validation.Validator;
 
@@ -30,29 +30,21 @@ public class Console {
         return text;
     }
 
-    public int promptForInteger(String message, Validator<Integer> validator) {
-        String possiblyANumber;
-        int number;
+    public int promptForInteger(String message, Validator<String> validator) {
         output.print(message);
-        IsInteger isIntegerValidator = new IsInteger();
-        possiblyANumber = input.next();
-        if (!isIntegerValidator.isValid(possiblyANumber)) {
+        String possiblyANumber = input.next();
+        if (!validator.isValid(possiblyANumber)) {
             output.println(validator.errorMessage());
             return promptForInteger(message, validator);
         }
-        number = Integer.parseInt(possiblyANumber);
-        if (!validator.isValid(number)) {
-            output.println(validator.errorMessage());
-            return promptForInteger(message, validator);
-        }
-        return number;
+        return Integer.parseInt(possiblyANumber);
     }
 
     public int chooseFromList(String message, List options) {
         output.println(buildOptionsList(options));
         int chosenNumber = promptForInteger(
             message,
-            new NumberWithinRange(1, options.size())
+            new IntegerFromString(new NumberWithinRange(1, options.size()))
         );
         return chosenNumber - 1;
     }

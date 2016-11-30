@@ -3,6 +3,7 @@
  */
 package com.codeup.console;
 
+import com.codeup.validation.IntegerFromString;
 import com.codeup.validation.NumberWithinRange;
 
 import java.util.LinkedHashMap;
@@ -29,7 +30,7 @@ public class Menu {
             console.message(render());
             option = console.promptForInteger(
                 "Choose an option (1-" + options.size() + "): ",
-                new NumberWithinRange(1, options.size())
+                new IntegerFromString(new NumberWithinRange(1, options.size()))
             );
             options.get(option - 1).execute();
         } while (option - 1 != exitOption);
