@@ -3,6 +3,8 @@
  */
 package com.codeup.console;
 
+import com.codeup.validation.Validator;
+
 import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -27,23 +29,19 @@ public class Console {
         return text;
     }
 
-    public int promptForNumberBetween(String message, int min, int max) {
+    public int promptForNumber(String message, Validator<Integer> validator) {
         int number;
         output.print(message);
         try {
             number = input.nextInt();
-            if (number < min || max < number) {
-                output.printf(
-                    "Enter a number between %d and %d",
-                    min,
-                    max
-                );
-                return promptForNumberBetween(message, min, max);
+            if (!validator.isValid(number)) {
+                output.println(validator.errorMessage());
+                return promptForNumber(message, validator);
             }
         } catch (InputMismatchException e) {
             input.next();
             output.println("Enter a valid number");
-            return promptForNumberBetween(message, min, max);
+            return promptForNumber(message, validator);
         }
         return number;
     }

@@ -3,6 +3,8 @@
  */
 package com.codeup.console;
 
+import com.codeup.validation.NumberWithinRange;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -25,10 +27,9 @@ public class Menu {
         int option;
         do {
             console.message(render());
-            option = console.promptForNumberBetween(
+            option = console.promptForNumber(
                 "Choose an option (1-" + options.size() + "): ",
-                1,
-                options.size()
+                new NumberWithinRange(1, options.size())
             );
             options.get(option - 1).execute();
         } while (option - 1 != exitOption);
