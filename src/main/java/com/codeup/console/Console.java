@@ -3,11 +3,11 @@
  */
 package com.codeup.console;
 
+import com.codeup.validation.IsInteger;
 import com.codeup.validation.NumberWithinRange;
 import com.codeup.validation.Validator;
 
 import java.io.PrintStream;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,26 +30,27 @@ public class Console {
         return text;
     }
 
-    public int promptForNumber(String message, Validator<Integer> validator) {
+    public int promptForInteger(String message, Validator<Integer> validator) {
+        String possiblyANumber;
         int number;
         output.print(message);
-        try {
-            number = input.nextInt();
-            if (!validator.isValid(number)) {
-                output.println(validator.errorMessage());
-                return promptForNumber(message, validator);
-            }
-        } catch (InputMismatchException e) {
-            input.next();
-            output.println("Enter a valid number");
-            return promptForNumber(message, validator);
+        IsInteger isIntegerValidator = new IsInteger();
+        possiblyANumber = input.next();
+        if (!isIntegerValidator.isValid(possiblyANumber)) {
+            output.println(validator.errorMessage());
+            return promptForInteger(message, validator);
+        }
+        number = Integer.parseInt(possiblyANumber);
+        if (!validator.isValid(number)) {
+            output.println(validator.errorMessage());
+            return promptForInteger(message, validator);
         }
         return number;
     }
 
     public int chooseFromList(String message, List options) {
         output.println(buildOptionsList(options));
-        int chosenNumber = promptForNumber(
+        int chosenNumber = promptForInteger(
             message,
             new NumberWithinRange(1, options.size())
         );

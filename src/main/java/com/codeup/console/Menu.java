@@ -27,7 +27,7 @@ public class Menu {
         int option;
         do {
             console.message(render());
-            option = console.promptForNumber(
+            option = console.promptForInteger(
                 "Choose an option (1-" + options.size() + "): ",
                 new NumberWithinRange(1, options.size())
             );

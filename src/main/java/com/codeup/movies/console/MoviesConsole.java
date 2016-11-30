@@ -21,7 +21,7 @@ public class MoviesConsole {
     }
 
     public int askForMovieRating() {
-        return console.promptForNumber(
+        return console.promptForInteger(
             "Enter a rating for the movie (1-5): ",
             new NumberWithinRange(1, 5)
         );
