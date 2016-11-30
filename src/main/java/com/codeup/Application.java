@@ -13,6 +13,7 @@ import com.codeup.movies.catalog.*;
 import com.codeup.movies.console.CategoriesConsole;
 import com.codeup.movies.console.MoviesConsole;
 import com.codeup.movies.console.actions.AddMovieAction;
+import com.codeup.movies.console.actions.SearchMovieByTitleAction;
 import org.hibernate.Session;
 
 import java.util.Scanner;
@@ -35,10 +36,11 @@ public class Application {
             new AddCategory(categories),
             new CategoriesConsole(console)
         );
-        SearchMovieByTitle searchMovieByTitle = new SearchMovieByTitle(
-            movies,
+        SearchMovieByTitleAction searchMovieByTitle = new SearchMovieByTitleAction(
+            new SearchMovieByTitle(movies),
             moviesConsole
         );
+
         Menu menu = new Menu(console);
         menu.addOption("Add a movie", addMovie);
         menu.addOption("Add a category", addCategory);
