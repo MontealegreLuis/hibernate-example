@@ -9,12 +9,13 @@ public class IsInWhiteList implements Validator<String> {
     private final String[] whiteList;
 
     public IsInWhiteList(String... whiteList) {
+        Arrays.sort(whiteList);
         this.whiteList = whiteList;
     }
 
     @Override
     public boolean isValid(String value) {
-        return Arrays.binarySearch(whiteList, value) != -1;
+        return Arrays.binarySearch(whiteList, value) >= 0;
     }
 
     @Override
