@@ -10,9 +10,6 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.*;
 
 public class IsInWhiteListTest {
-
-    private IsInWhiteList validator = new IsInWhiteList("a", "in the list", "c");
-
     @Test
     public void it_passes_if_value_is_in_whitelist() {
         assertThat(validator.isValid("in the list"), is(true));
@@ -27,4 +24,6 @@ public class IsInWhiteListTest {
     public void it_has_an_error_message() {
         assertThat(validator.errorMessage(), is(notNullValue()));
     }
+
+    private IsInWhiteList validator = new IsInWhiteList("a", "in the list", "c");
 }

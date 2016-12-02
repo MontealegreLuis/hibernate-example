@@ -18,16 +18,6 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IntegerFromStringTest {
-    private IntegerFromString validator;
-
-    @Mock
-    private Validator<Integer> integerValidator;
-
-    @Before
-    public void createValidator() {
-        validator = new IntegerFromString(integerValidator);
-    }
-
     @Test
     public void it_fails_if_text_is_provided() {
         String notANumber = "this is not a number";
@@ -66,4 +56,14 @@ public class IntegerFromStringTest {
 
         assertThat(validator.errorMessage(), is(integerValidationMessage));
     }
+
+    @Before
+    public void createValidator() {
+        validator = new IntegerFromString(integerValidator);
+    }
+
+    private IntegerFromString validator;
+
+    @Mock
+    private Validator<Integer> integerValidator;
 }

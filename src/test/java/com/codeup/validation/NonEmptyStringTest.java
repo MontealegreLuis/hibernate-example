@@ -10,9 +10,6 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.*;
 
 public class NonEmptyStringTest {
-
-    private NonEmptyString validator = new NonEmptyString();
-
     @Test
     public void it_passes_if_non_empty_string_is_given() {
         assertThat(validator.isValid("Non empty message"), is(true));
@@ -32,4 +29,6 @@ public class NonEmptyStringTest {
     public void it_has_an_error_message() {
         assertThat(validator.errorMessage(), is(notNullValue()));
     }
+
+    private NonEmptyString validator = new NonEmptyString();
 }

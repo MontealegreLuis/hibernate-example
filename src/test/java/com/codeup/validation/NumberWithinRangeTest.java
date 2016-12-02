@@ -9,14 +9,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class NumberWithinRangeTest {
-    private static final int MIN = 1;
-    private static final int MAX = 4;
-    private static final int VALID = 2;
-    private NumberWithinRange validator;
-
     @Test(expected = IllegalArgumentException.class)
     public void it_is_not_created_if_invalid_range_is_given() {
-        new NumberWithinRange(4, 2);
+        new NumberWithinRange(MAX, MIN);
     }
 
     @Test
@@ -67,4 +62,9 @@ public class NumberWithinRangeTest {
 
         assertThat(validator.isValid(-VALID), is(true));
     }
+
+    private static final int MIN = 1;
+    private static final int MAX = 4;
+    private static final int VALID = 2;
+    private NumberWithinRange validator;
 }
