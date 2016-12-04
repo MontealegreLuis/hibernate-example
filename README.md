@@ -20,7 +20,13 @@ Run the `main` method in the `Application` class.
 
 ## Tests
 
-To run the unit tests, execute:
+To run the tests, create a Hibernate configuration file first.
+
+```bash
+$ cp hibernate.test.cfg.xml.dist src/test/resources/hibernate.test.cfg.xml
+```
+
+Then run the tests:
 
 ```bash
 $ mvn test

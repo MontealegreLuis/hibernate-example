@@ -1,2 +1,3 @@
 *.iml
 src/main/resources/hibernate.cfg.xml
+src/test/resources/hibernate.test.cfg.xml
