@@ -16,10 +16,6 @@ public class MenuOption {
         action.execute();
     }
 
-    public String title() {
-        return title;
-    }
-
     @Override
     public String toString() {
         return title;
