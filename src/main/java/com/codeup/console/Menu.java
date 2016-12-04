@@ -46,6 +46,6 @@ public class Menu {
 
     public void setExitMessage(String message) {
         exitOption = next;
-        addOption(message, () -> console.message("Thank you!"));
+        addOption("Exit", () -> console.message(message));
     }
 }
