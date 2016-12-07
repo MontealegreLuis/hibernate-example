@@ -117,9 +117,7 @@ public class ConsoleTest {
     private String message = "Message";
     private String yes = "y";
     private String no = "n";
-    private List<String> options = Arrays.asList(
-        new String[]{"Option1", "Option2", "Option3"}
-    );
+    private List<String> options = Arrays.asList("Option1", "Option2", "Option3");
     private int optionChosen = 1;
     private String validListOption = "2";
     private int number = 367;
