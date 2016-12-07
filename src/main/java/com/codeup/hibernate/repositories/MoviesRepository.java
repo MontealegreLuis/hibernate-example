@@ -6,6 +6,7 @@ package com.codeup.hibernate.repositories;
 import com.codeup.movies.Movie;
 import com.codeup.movies.Movies;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
@@ -18,9 +19,10 @@ public class MoviesRepository implements Movies {
     }
 
     public void add(Movie movie) {
-        session.beginTransaction();
+        Transaction transaction = session.getTransaction();
+        if (!transaction.isActive()) transaction.begin();
         session.save(movie);
-        session.getTransaction().commit();
+        transaction.commit();
     }
 
     public Movie with(int id) {

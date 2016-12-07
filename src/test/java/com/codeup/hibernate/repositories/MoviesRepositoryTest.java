@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -58,6 +59,19 @@ public class MoviesRepositoryTest {
     public void it_does_not_find_a_movie_with_an_unknown_id() {
         int unknownMovieId = -1;
         assertThat(movies.with(unknownMovieId), is(nullValue()));
+    }
+
+    @Test
+    public void it_publishes_a_new_movie() {
+        Movie shrek = Movie.publish(
+            "Shrek",
+            5,
+            "shrek.png",
+            Collections.singletonList(FourMoviesFixture.animated)
+        );
+        movies.add(shrek);
+
+        assertThat(movies.with(shrek.id()), is(notNullValue()));
     }
 
     @Before
