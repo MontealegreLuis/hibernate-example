@@ -57,5 +57,6 @@ public class Application {
 
         session.close();
         input.close();
+        System.exit(0);
     }
 }
