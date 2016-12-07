@@ -52,13 +52,12 @@ public class CategoriesRepositoryTest {
 
     @Before
     public void loadFixtures() {
-        session = rule.getSession();
+        Session session = rule.getSession();
         FourCategoriesFixture.load(session);
         categories = new CategoriesRepository(session);
     }
 
     @Rule
     public final SessionFactoryRule rule = new SessionFactoryRule();
-    private Session session;
     private CategoriesRepository categories;
 }
