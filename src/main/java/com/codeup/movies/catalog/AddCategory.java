@@ -3,10 +3,8 @@
  */
 package com.codeup.movies.catalog;
 
-import com.codeup.console.Action;
 import com.codeup.movies.Categories;
 import com.codeup.movies.Category;
-import com.codeup.movies.console.CategoriesConsole;
 
 public class AddCategory {
     private final Categories categories;
