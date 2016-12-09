@@ -4,37 +4,50 @@
 package com.codeup.movies.console;
 
 import com.codeup.console.Console;
-import com.codeup.validation.NonEmptyString;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.io.ByteArrayInputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CategoriesConsoleTest {
-
     @Test
     public void it_accepts_a_valid_category_name() {
-        String categoryName = "action";
-        when(console.promptForText(anyString(), any(NonEmptyString.class)))
-            .thenReturn(categoryName)
-        ;
-        assertThat(categoriesConsole.askForCategoryName(), is(categoryName));
+        console = aConsoleWithInput(categoryName);
+
+        assertThat(console.askForCategoryName(), is(equalTo(categoryName)));
     }
 
-    @Before
-    public void configureConsole() {
-        categoriesConsole = new CategoriesConsole(console);
+    @Test
+    public void it_keeps_prompting_until_a_valid_name_is_given() {
+        console = aConsoleWithInput(emptyText, emptyText, categoryName);
+
+        assertThat(console.askForCategoryName(), is(equalTo(categoryName)));
     }
+
+    private CategoriesConsole aConsoleWithInput(String... userInput) {
+        ByteArrayInputStream input = new ByteArrayInputStream(
+            String.join("\n", userInput).getBytes()
+        );
+        return new CategoriesConsole(new Console(
+            new Scanner(input).useDelimiter("\n"),
+            output
+        ));
+    }
+
+    private CategoriesConsole console;
+
+    private final String categoryName = "action";
+    private final String emptyText = "    ";
 
     @Mock
-    private Console console;
-    private CategoriesConsole categoriesConsole;
+    private PrintStream output;
 }
