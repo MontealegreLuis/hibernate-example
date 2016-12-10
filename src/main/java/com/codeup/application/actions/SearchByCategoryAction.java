@@ -1,14 +1,14 @@
 /**
  * This source file is subject to the license that is bundled with this package in the file LICENSE.
  */
-package com.codeup.movies.console.actions;
+package com.codeup.application.actions;
 
 import com.codeup.console.Action;
 import com.codeup.movies.Categories;
 import com.codeup.movies.Category;
 import com.codeup.movies.Movie;
 import com.codeup.movies.catalog.SearchByCategory;
-import com.codeup.movies.console.MoviesConsole;
+import com.codeup.application.MoviesConsole;
 
 import java.util.List;
 

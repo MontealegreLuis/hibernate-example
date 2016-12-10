@@ -1,7 +1,7 @@
 /**
  * This source file is subject to the license that is bundled with this package in the file LICENSE.
  */
-package com.codeup.movies.console;
+package com.codeup.application;
 
 import com.codeup.console.Console;
 import com.codeup.movies.Category;

@@ -1,4 +1,4 @@
-package com.codeup.movies.console;
+package com.codeup.application;
 
 import com.codeup.console.Console;
 import com.codeup.movies.Category;
