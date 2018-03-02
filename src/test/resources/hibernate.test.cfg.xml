@@ -10,15 +10,22 @@
         <property name="hibernate.connection.driver_class">
             org.h2.Driver
         </property>
+
+        <!-- Credentials -->
         <property name="connection.url">
             jdbc:h2:mem:movies_h_test
         </property>
-        <property name="connection.driver_class">
-            org.h2.Driver
+
+        <!--Caching configuration-->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">
+            org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
         </property>
+
+        <!-- Development settings -->
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
-        <!-- DB schema will be updated if needed -->
         <property name="hbm2ddl.auto">create</property>
     </session-factory>
 </hibernate-configuration>

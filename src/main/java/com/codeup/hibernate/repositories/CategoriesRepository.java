@@ -1,4 +1,4 @@
-/**
+/*
  * This source file is subject to the license that is bundled with this package in the file LICENSE.
  */
 package com.codeup.hibernate.repositories;
@@ -22,14 +22,18 @@ public class CategoriesRepository implements Categories {
     }
 
     public Category with(int id) {
-        Query query = session.createQuery("FROM Category WHERE id = ?");
-        query.setParameter(0, id);
+        Query query = session.createQuery("FROM Category WHERE id = :id");
+        query.setParameter("id", id);
+        query.setCacheable(true);
 
         return (Category) query.uniqueResult();
     }
 
     public List<Category> all() {
         Query query = session.createQuery("FROM Category");
+        query.setCacheable(true);
+        query.setCacheRegion("movies.categories");
+
         @SuppressWarnings("unchecked")
         List<Category> all = query.list();
 

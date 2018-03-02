@@ -10,6 +10,8 @@
         <property name="hibernate.connection.driver_class">
             com.mysql.cj.jdbc.Driver
         </property>
+
+        <!-- Credentials -->
         <property name="connection.url">
             jdbc:mysql://localhost/movies_db?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;createDatabaseIfNotExist=true
         </property>
@@ -19,11 +21,21 @@
         <property name="connection.password">
             movies_password
         </property>
+
+        <!--Caching configuration-->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">
+            org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+        </property>
+
+        <!-- Development settings -->
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
-        <!-- DB schema will be updated if needed -->
         <property name="hbm2ddl.auto">update</property>
-        <mapping resource="com/codeup/movies/Category.hbm.xml" />
-        <mapping resource="com/codeup/movies/Movie.hbm.xml" />
+
+        <!-- Entities mapping -->
+        <mapping resource="com/codeup/movies/Category.hbm.xml"/>
+        <mapping resource="com/codeup/movies/Movie.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

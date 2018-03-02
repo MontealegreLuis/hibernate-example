@@ -8,6 +8,7 @@
         <meta attribute="class-description">
             This class contains the movies category information.
         </meta>
+        <cache usage="read-write" />
         <id name="id" type="int" column="id" access="field">
             <generator class="native"/>
         </id>

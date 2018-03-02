@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<ehcache>
+    <defaultCache
+        maxElementsInMemory="100"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="200"
+    />
+
+    <cache
+        name="org.hibernate.cache.internal.StandardQueryCache"
+        maxEntriesLocalHeap="5"
+        eternal="false"
+        timeToLiveSeconds="120"
+    />
+
+    <cache
+        name="org.hibernate.cache.spi.UpdateTimestampsCache"
+        maxEntriesLocalHeap="5000"
+        eternal="true"
+    />
+
+    <cache
+        name="movies.categories"
+        maxEntriesLocalHeap="5"
+        eternal="false"
+        timeToLiveSeconds="86400"
+    />
+
+    <cache
+        name="movies.withSimilarTitle"
+        maxEntriesLocalHeap="5"
+        eternal="false"
+        timeToLiveSeconds="86400"
+    />
+
+    <cache
+        name="movies.underCategory"
+        maxEntriesLocalHeap="5"
+        eternal="false"
+        timeToLiveSeconds="86400"
+    />
+
+    <cache
+        name="com.codeup.movies.Category"
+        maxElementsInMemory="100"
+        eternal="false"
+        timeToIdleSeconds="5"
+        timeToLiveSeconds="200"
+    />
+
+    <cache
+        name="com.codeup.movies.Movie"
+        maxElementsInMemory="100"
+        eternal="false"
+        timeToIdleSeconds="5"
+        timeToLiveSeconds="200"
+    />
+</ehcache>
