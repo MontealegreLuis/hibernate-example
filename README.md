@@ -14,9 +14,14 @@ Create a Hibernate configuration file.
 $ cp hibernate.cfg.xml.dist src/main/resources/hibernate.cfg.xml
 ```
 
-Customize the URL, username and password.
+Customize the URL in the configuration file with your local database username and password.
 
-Run the `main` method in the `Application` class.
+Package and run the application with Maven
+
+```
+$ mvn package -Dmaven.test.skip=true
+$ java -jar target/hibernate-example-1.0.0.jar
+```
 
 ## Tests
 
