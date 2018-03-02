@@ -25,13 +25,7 @@ $ java -jar target/hibernate-example-1.0.0.jar
 
 ## Tests
 
-To run the tests, create a Hibernate configuration file first.
-
-```bash
-$ cp hibernate.test.cfg.xml.dist src/test/resources/hibernate.test.cfg.xml
-```
-
-Then run the tests:
+Run the JUnit test suite with Maven
 
 ```bash
 $ mvn test
