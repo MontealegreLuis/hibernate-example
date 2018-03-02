@@ -11,10 +11,7 @@
             com.mysql.cj.jdbc.Driver
         </property>
         <property name="connection.url">
-            jdbc:mysql://localhost/movies_db?useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;createDatabaseIfNotExist=true
-        </property>
-        <property name="connection.driver_class">
-            com.mysql.cj.jdbc.Driver
+            jdbc:mysql://localhost/movies_db?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;createDatabaseIfNotExist=true
         </property>
         <property name="connection.username">
             movies_user
